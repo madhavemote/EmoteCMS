@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_home_step_cards",
+  "info": {
+    "displayName": "StepCards"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "subheading": {
+      "type": "text"
+    },
+    "StepCard": {
+      "type": "component",
+      "component": "home.home-card",
+      "repeatable": true
+    },
+    "stepCardCTA": {
+      "type": "component",
+      "component": "home.cta-button",
+      "repeatable": false
+    },
+    "layout": {
+      "type": "enumeration",
+      "enum": [
+        "row",
+        "column",
+        "grid-2"
+      ]
+    },
+    "backgroundColor": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

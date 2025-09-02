@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": {
+    "singularName": "page",
+    "pluralName": "pages",
+    "displayName": "Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "template": {
+      "type": "enumeration",
+      "enum": [
+        "home",
+        "therapist-application",
+        "find-the-right-therapist",
+        "benefits-of-online-therapy",
+        "types-of-therapy",
+        "pay-as-you-go-therapy",
+        "affordable-therapy",
+        "start-small",
+        "help-someone-heal",
+        "why-emote-care"
+      ]
+    },
+    "metaTitle": {
+      "type": "string"
+    },
+    "metaDescription": {
+      "type": "text"
+    },
+    "canonicalUrl": {
+      "type": "string"
+    },
+    "noIndex": {
+      "type": "boolean"
+    },
+    "structuredData": {
+      "type": "json"
+    },
+    "ogTitle": {
+      "type": "string"
+    },
+    "ogDescription": {
+      "type": "text"
+    },
+    "ogImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Components": {
+      "type": "dynamiczone",
+      "components": [
+        "home.landing-block",
+        "home.home-card",
+        "home.step-cards",
+        "home.four-cards"
+      ]
+    }
+  }
+}

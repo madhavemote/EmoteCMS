@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_home_four_cards",
+  "info": {
+    "displayName": "FourCards"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "subheading": {
+      "type": "text"
+    },
+    "HomeCard": {
+      "type": "component",
+      "component": "home.home-card",
+      "repeatable": true
+    },
+    "footerText": {
+      "type": "text"
+    },
+    "CtaButton": {
+      "type": "component",
+      "component": "home.cta-button",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

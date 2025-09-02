@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_home_landing_blocks",
+  "info": {
+    "displayName": "LandingBlock"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "subheading": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

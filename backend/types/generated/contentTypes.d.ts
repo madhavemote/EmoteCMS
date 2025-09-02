@@ -410,6 +410,62 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPagePage extends Struct.CollectionTypeSchema {
+  collectionName: 'pages';
+  info: {
+    displayName: 'Page';
+    pluralName: 'pages';
+    singularName: 'page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    canonicalUrl: Schema.Attribute.String;
+    Components: Schema.Attribute.DynamicZone<
+      [
+        'home.landing-block',
+        'home.home-card',
+        'home.step-cards',
+        'home.four-cards',
+      ]
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'> &
+      Schema.Attribute.Private;
+    metaDescription: Schema.Attribute.Text;
+    metaTitle: Schema.Attribute.String;
+    noIndex: Schema.Attribute.Boolean;
+    ogDescription: Schema.Attribute.Text;
+    ogImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    ogTitle: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID;
+    structuredData: Schema.Attribute.JSON;
+    template: Schema.Attribute.Enumeration<
+      [
+        'home',
+        'therapist-application',
+        'find-the-right-therapist',
+        'benefits-of-online-therapy',
+        'types-of-therapy',
+        'pay-as-you-go-therapy',
+        'affordable-therapy',
+        'start-small',
+        'help-someone-heal',
+        'why-emote-care',
+      ]
+    >;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -920,6 +976,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::page.page': ApiPagePage;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
