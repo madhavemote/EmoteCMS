@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import CTAButton from './CTAButton';
 
 interface LandingBlockProps {
     heading: string;
@@ -7,23 +8,31 @@ interface LandingBlockProps {
         url: string;
         alternativeText?: string;
     };
+    LandingCta?: {
+        label: string;
+        link: string;
+        type: 'primary' | 'secondary' | 'link';
+    };
 }
 
-export default function LandingBlock({ heading, subheading, backgroundImage }: LandingBlockProps) {
+export default function LandingBlock({ heading, subheading, backgroundImage, LandingCta }: LandingBlockProps) {
     return (
-        <div className="relative min-h-[600px] w-full flex items-center justify-center">
+        <div className="relative h-dvh w-full flex justify-center">
             {backgroundImage?.url && (
                 <Image
                     src={backgroundImage.url}
                     alt={backgroundImage.alternativeText || heading}
                     fill
-                    className="object-cover z-0"
+                    className="!w-dvw !h-fit z-0 absolute bottom-0 !top-[unset]"
                     priority
                 />
             )}
-            <div className="relative z-10 max-w-4xl mx-auto text-center px-4">
-                <h1 className="text-4xl md:text-6xl font-bold mb-6">{heading}</h1>
-                <p className="text-xl md:text-2xl">{subheading}</p>
+            <div className="relative z-10 max-w-4xl mx-auto text-center px-4 pt-12">
+                <h1 className="text-4xl md:text-5xl font-normal mb-6">{heading}</h1>
+                <p dangerouslySetInnerHTML={{ __html: subheading }} className="text-md"></p>
+                <div className="mt-12">
+                    {LandingCta && <CTAButton {...LandingCta} />}
+                </div>
             </div>
         </div>
     );

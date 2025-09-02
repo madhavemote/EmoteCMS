@@ -50,6 +50,7 @@ export interface HomeLandingBlock extends Struct.ComponentSchema {
       'images' | 'files' | 'videos' | 'audios'
     >;
     heading: Schema.Attribute.String;
+    LandingCta: Schema.Attribute.Component<'home.cta-button', false>;
     subheading: Schema.Attribute.Text;
   };
 }

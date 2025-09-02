@@ -3,6 +3,7 @@ import LandingBlock from '../components/LandingBlock';
 import HomeCard from '../components/HomeCard';
 import StepCards from '../components/StepCards';
 import FourCards from '../components/FourCards';
+import qs from 'qs';
 
 const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://127.0.0.1:1337';
 
@@ -73,7 +74,7 @@ interface StrapiComponent {
 
 async function getPage(slug: string): Promise<StrapiPage | null> {
     try {
-        const res = await fetch(`${STRAPI_API_URL}/api/pages?populate=*&filters[slug]=${slug}`, {
+        const res = await fetch(`${STRAPI_API_URL}/api/pages?populate=all&filters[slug]=${slug}`, {
             next: { revalidate: 60 },
             headers: {
                 'Content-Type': 'application/json',
@@ -87,6 +88,9 @@ async function getPage(slug: string): Promise<StrapiPage | null> {
                 url: res.url,
             });
 
+            const errorData = await res.json().catch(() => null);
+            console.log('Error response data:', errorData);
+
             if (res.status === 403) {
                 throw new Error('Access to page content is forbidden. Please check Strapi permissions.');
             }
@@ -95,6 +99,7 @@ async function getPage(slug: string): Promise<StrapiPage | null> {
         }
 
         const data = await res.json();
+
         if (!data.data?.[0]) {
             return null;
         }
@@ -106,7 +111,8 @@ async function getPage(slug: string): Promise<StrapiPage | null> {
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-    const slug = await Promise.resolve(params.slug);
+    const awaitedParams = await params;
+    const slug = awaitedParams.slug;
 
     try {
         const page = await getPage(slug);
@@ -156,17 +162,19 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
         const renderComponent = (component: StrapiComponent) => {
             switch (component.__component) {
+
                 case 'home.landing-block':
                     return (
                         <LandingBlock
-                            key={component.id}
+                            key={`${component.__component}-${component.id}`}
                             heading={component.heading || ''}
                             subheading={component.subheading || ''}
+                            LandingCta={component.LandingCta}
                             backgroundImage={
-                                component.backgroundImage?.data
+                                component.backgroundImage?.url
                                     ? {
-                                        url: `${STRAPI_API_URL}${component.backgroundImage.data.attributes.url}`,
-                                        alternativeText: component.backgroundImage.data.attributes.alternativeText,
+                                        url: `${STRAPI_API_URL}${component.backgroundImage.url}`,
+                                        alternativeText: component.backgroundImage.alternativeText,
                                     }
                                     : undefined
                             }
@@ -176,7 +184,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 case 'home.home-card':
                     return (
                         <HomeCard
-                            key={component.id}
+                            key={`${component.__component}-${component.id}`}
                             heading={component.heading || ''}
                             subheading={component.subheading || ''}
                             icon={component.backgroundImage?.data?.attributes.url}
@@ -188,7 +196,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 case 'home.step-cards':
                     return (
                         <StepCards
-                            key={component.id}
+                            key={`${component.__component}-${component.id}`}
                             heading={component.heading || ''}
                             subheading={component.subheading || ''}
                             StepCard={component.StepCard || []}
@@ -201,7 +209,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 case 'home.four-cards':
                     return (
                         <FourCards
-                            key={component.id}
+                            key={`${component.__component}-${component.id}`}
                             heading={component.heading || ''}
                             subheading={component.subheading || ''}
                             HomeCard={component.HomeCard || []}

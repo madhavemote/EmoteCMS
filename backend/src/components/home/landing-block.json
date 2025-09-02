@@ -20,6 +20,11 @@
     },
     "subheading": {
       "type": "text"
+    },
+    "LandingCta": {
+      "type": "component",
+      "component": "home.cta-button",
+      "repeatable": false
     }
   },
   "config": {}

@@ -10,6 +10,7 @@ interface FourCardsProps {
         icon?: string;
         alignm?: 'right' | 'left' | 'center';
         numbered?: boolean;
+        id: number;
     }>;
     CtaButton?: {
         label: string;
@@ -27,28 +28,29 @@ export default function FourCards({
     footerText
 }: FourCardsProps) {
     return (
-        <div className="py-16 px-4">
+        <div className="relative h-dvh w-full bg-[#f2ede9] 3xl:gap-[3.5rem] px-4 py-10 lg:px-[8.75rem] lg:py-20 2xl:px-[13.75rem] 3xl:px-[22.5rem]">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">{heading}</h2>
-                    <p className="text-xl text-gray-600 max-w-3xl mx-auto">{subheading}</p>
+                    <p className="text-xs lg:text-sm 3xl:text-base text-gray-600 max-w-3xl mx-auto">{subheading}</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
                     {cards.map((card, index) => (
                         <HomeCard
-                            key={index}
+                            key={card.id}
+                            number={index + 1}
                             {...card}
                         />
                     ))}
                 </div>
 
                 {(cta || footerText) && (
-                    <div className="mt-12 text-center">
-                        {cta && <CTAButton {...cta} />}
+                    <div className="mt-12 flex flex-col items-center justify-center gap-4 text-center">
                         {footerText && (
-                            <p className="mt-6 text-gray-600">{footerText}</p>
+                            <p className="mt-6 text-gray-600 max-w-2xl mx-auto">{footerText}</p>
                         )}
+                        {cta && <CTAButton {...cta} />}
                     </div>
                 )}
             </div>
