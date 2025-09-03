@@ -31,7 +31,7 @@ export default function StepCards({
 }: StepCardsProps) {
     const layoutClasses = {
         row: 'flex flex-col md:flex-row gap-8',
-        column: 'flex flex-col gap-[0.75rem] 3xl:gap-6 items-center',
+        column: 'flex flex-col gap-[0.75rem] 3xl:gap-6 items-center mx-auto',
         'grid-2': 'grid grid-cols-1 md:grid-cols-2 gap-8'
     };
 
@@ -40,8 +40,8 @@ export default function StepCards({
             className="py-16 px-4"
             style={{ backgroundColor: backgroundColor || 'transparent' }}
         >
-            <div className="py-10 px-4 lg:py-20 lg:px-[18.75rem] 2xl:px-[23.75rem] 3xl:px-[32.5rem] flex flex-col gap-6 lg:gap-12 3xl:gap-[3.5rem] ">
-                <div className="text-center mb-12">
+            <div className="py-10 px-4 lg:py-20  flex flex-col gap-6 lg:gap-12 3xl:gap-[3.5rem] ">
+                <div className="text-center mb-12 lg:px-[18.75rem] 2xl:px-[23.75rem] 3xl:px-[32.5rem]">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">{heading}</h2>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto" dangerouslySetInnerHTML={{ __html: subheading }}></p>
                 </div>
@@ -49,6 +49,7 @@ export default function StepCards({
                 <div className={layoutClasses[layout]}>
                     {StepCard.map((card, index) => (
                         <HomeCard
+                            layout={layout}
                             key={card.id}
                             {...card}
                             numbered={card.numbered}

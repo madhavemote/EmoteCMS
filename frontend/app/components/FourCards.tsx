@@ -10,7 +10,6 @@ interface FourCardsProps {
         icon?: string;
         alignm?: 'right' | 'left' | 'center';
         numbered?: boolean;
-        id: number;
     }>;
     CtaButton?: {
         label: string;
@@ -35,7 +34,7 @@ export default function FourCards({
                     <p className="text-xs lg:text-sm 3xl:text-base text-gray-600 max-w-3xl mx-auto">{subheading}</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     {cards.map((card, index) => (
                         <HomeCard
                             key={card.id}
