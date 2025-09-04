@@ -70,6 +70,32 @@ export interface HomeStepCards extends Struct.ComponentSchema {
   };
 }
 
+export interface TherapistApplicationFrame extends Struct.ComponentSchema {
+  collectionName: 'components_therapist_application_frames';
+  info: {
+    displayName: 'Frame';
+  };
+  attributes: {
+    borderColor: Schema.Attribute.String;
+    heading: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    subheading: Schema.Attribute.Text;
+  };
+}
+
+export interface TherapistApplicationThreeFrame extends Struct.ComponentSchema {
+  collectionName: 'components_therapist_application_three_frames';
+  info: {
+    displayName: 'ThreeFrame';
+  };
+  attributes: {
+    TherapistApplicationFrame: Schema.Attribute.Component<
+      'therapist-application.frame',
+      true
+    >;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -78,6 +104,8 @@ declare module '@strapi/strapi' {
       'home.home-card': HomeHomeCard;
       'home.landing-block': HomeLandingBlock;
       'home.step-cards': HomeStepCards;
+      'therapist-application.frame': TherapistApplicationFrame;
+      'therapist-application.three-frame': TherapistApplicationThreeFrame;
     }
   }
 }

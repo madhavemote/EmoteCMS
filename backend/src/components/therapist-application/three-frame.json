@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_therapist_application_three_frames",
+  "info": {
+    "displayName": "ThreeFrame"
+  },
+  "options": {},
+  "attributes": {
+    "TherapistApplicationFrame": {
+      "type": "component",
+      "component": "therapist-application.frame",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

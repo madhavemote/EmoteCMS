@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_therapist_application_frames",
+  "info": {
+    "displayName": "Frame"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "subheading": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "borderColor": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

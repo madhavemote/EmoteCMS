@@ -69,7 +69,8 @@
         "home.landing-block",
         "home.home-card",
         "home.step-cards",
-        "home.four-cards"
+        "home.four-cards",
+        "therapist-application.three-frame"
       ]
     }
   }

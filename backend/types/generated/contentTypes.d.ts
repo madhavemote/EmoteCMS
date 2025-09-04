@@ -428,6 +428,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'home.home-card',
         'home.step-cards',
         'home.four-cards',
+        'therapist-application.three-frame',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
